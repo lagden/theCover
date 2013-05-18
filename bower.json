@@ -1,0 +1,17 @@
+{
+    "name": "jquery.theCover.js",
+    "description": "HTML5 Cross Browser Polyfills - Background Size Cover",
+    "version": "0.1.0",
+    "main": "jquery.theCover.js",
+    "keyword": [
+        "background",
+        "cover",
+        "polyfills"
+    ],
+    "ignore": [
+        "example"
+    ],
+    "dependencies": {
+        "jquery": "<=1.9"
+    }
+}
