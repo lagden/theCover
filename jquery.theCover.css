@@ -1,0 +1,16 @@
+/* Plugin Css */
+.theCover-resize {
+  overflow: hidden;
+}
+
+.theCover-viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.theCover-viewport img{
+  min-width: 100%;
+}

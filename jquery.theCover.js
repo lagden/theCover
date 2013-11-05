@@ -3,22 +3,21 @@
  * Thiago Lagden | @thiagolagden | lagden@gmail.com
  * jQuery plugin
  */
-;(function ($, window, document, undefined) {
-    var pluginName = "theCover";
-    var defaults = {
-        theCss: "theCover"
-    };
+;(function (window) {
+    var $ = window.jQuery,
+        pluginName = "theCover",
+        defaults = {
+            theCss: "theCover"
+        };
 
     function Plugin(element, options) {
-        if (!$.support.leadingWhitespace) {
-            this.element = element;
-            this.$element = $(element);
-            this.$win = $(window);
-            this.options = $.extend({}, defaults, options);
-            this._defaults = defaults;
-            this._name = pluginName;
-            this.init();
-        }
+        this.element = element;
+        this.$element = $(element);
+        this.$win = $(window);
+        this.options = $.extend({}, defaults, options);
+        this._defaults = defaults;
+        this._name = pluginName;
+        this.init();
     }
 
     Plugin.prototype = {
@@ -64,36 +63,29 @@
             $viewport.scrollLeft(($img.width() - $el.width()) / 2);
             $viewport.scrollTop(($img.height() - $el.height()) / 2);
         }
-        , destroy: function() {
-            this.$element
-            .removeClass(this.options.theCss + '-resize')
-            .find('.' + this.options.theCss + '-viewport').remove();
-
-            this.$win
-            .off('resize.' + this._name);
-        }
     };
 
-    $.fn[pluginName] = function (options) {
+    $.fn[pluginName] = function(options) {
         var args = arguments;
-        if (options === undefined || typeof options === 'object') {
-            return this.each(function () {
-                if (!$.data(this, "plugin_" + pluginName))
-                    $.data(this, "plugin_" + pluginName, new Plugin(this, options));
-            });
-        } else if (typeof options === 'string' && options[0] !== '_' && options !== 'init') {
-            var returns;
+        var hasSupport = Boolean($.support.leadingWhitespace);
+        if (hasSuppor === false) {
+            if (options === undefined || typeof options === "object") {
+                return this.each(function() {
+                    if (!$.data(this, pluginName))
+                        $.data(this, pluginName, new Plugin(this, options));
+                });
+            } else if (typeof options === "string" && options[0] !== "_" && options !== "init") {
+                var returns;
 
-            this.each(function () {
-                var instance = $.data(this, 'plugin_' + pluginName);
-                if (instance instanceof Plugin && typeof instance[options] === 'function')
-                    returns = instance[options].apply( instance, Array.prototype.slice.call( args, 1 ));
+                this.each(function() {
+                    var instance = $.data(this, pluginName);
+                    if (instance instanceof Plugin && typeof instance[options] === "function")
+                        returns = instance[options].apply(instance, Array.prototype.slice.call(args, 1));
+                });
 
-                if (options === 'destroy')
-                    $.data(this, 'plugin_' + pluginName, null);
-            });
-
-            return returns !== undefined ? returns : this;
+                return returns !== undefined ? returns : this;
+            }
         }
+        return null;
     };
-})(jQuery, window, document);
+})(window);
