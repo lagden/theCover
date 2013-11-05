@@ -68,7 +68,7 @@
     $.fn[pluginName] = function(options) {
         var args = arguments;
         var hasSupport = Boolean($.support.leadingWhitespace);
-        if (hasSuppor === false) {
+        if (hasSupport === false) {
             if (options === undefined || typeof options === "object") {
                 return this.each(function() {
                     if (!$.data(this, pluginName))
