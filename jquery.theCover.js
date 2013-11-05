@@ -28,8 +28,9 @@
         , simulate: function() {
             var backgroundImage = this.$element.css('backgroundImage').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
             this.$element
-            .append('<div class="' + this.options.theCss + '-viewport"><img src="' + backgroundImage + '"></div>')
-            .addClass(this.options.theCss + '-resize');
+            .addClass(this.options.theCss + '-resize')
+            .css("backgroundImage", "none")
+            .append('<div class="' + this.options.theCss + '-viewport"><img src="' + backgroundImage + '"></div>');
 
             var viewport = this.$element.find('.' + this.options.theCss + '-viewport:eq(0)');
             var img = viewport.find('img:eq(0)');
